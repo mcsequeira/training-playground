@@ -11,7 +11,9 @@ pipeline {
 		}
 	}
 	stage('test'){
-		sh "grep '2021' file.txt"
+		steps{
+			sh "grep '2021' file.txt"
+		}
 	}
     }
 }
