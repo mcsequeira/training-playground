@@ -5,5 +5,18 @@ pipeline {
 		}
 	}
     stages {
+    	stage('build') {
+		steps{
+			ex_5()
+		}
+	}
+	stage('test'){
+		sh "grep '2021' file.txt"
+	}
     }
+}
+
+def ex_5() {
+	sh 'date > file.txt'
+	sh 'cat file.txt'
 }
