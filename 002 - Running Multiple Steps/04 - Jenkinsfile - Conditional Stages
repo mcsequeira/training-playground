@@ -4,6 +4,25 @@ pipeline {
 			image 'alpine:latest' 
 		}
 	}
+    parameters {
+        choice(name: 'EXECUTE', choices: ['BUILD', 'TEST'], description: 'What do you want to execute?')
+    }
     stages {
+    	stage('build') {
+	    when{
+		environment name: 'EXECUTE', value: 'BUILD'
+	    }
+            steps {
+                sh 'echo build' 
+            }
+        }
+	stage('test') {
+	    when{
+		environment name: 'EXECUTE', value: 'TEST'
+	    }
+            steps {
+                sh 'echo test' 
+            }
+        }
     }
 }
