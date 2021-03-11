@@ -17,5 +17,5 @@ pipeline {
 
 def ex_5() {
 	sh 'date > file.txt'
-	sh 'echo file.txt'
+	sh 'cat file.txt'
 }
