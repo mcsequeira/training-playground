@@ -1,13 +1,16 @@
 pipeline {
     agent { 
 		docker { 
-			image 'alpine:latest' 
+			image 'maven:3.3.3' 
 		}
 	}
     stages {
         stage('tests') {
             steps {
-                sh ""
+	    configFileProvider(
+        		[configFile(fileId: 'settings.xml', targetLocation: 'settings-copy.xml')]) {
+       			 sh "mvn install -s settings-copy.xml -f '005 - Recording Test Results and Artifacts/02 - Java Unit Tests/'"
+   			 }
             }
         }
     }
