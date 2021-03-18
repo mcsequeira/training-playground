@@ -1,13 +1,15 @@
 pipeline {
     agent { 
-		docker { 
-			image 'alpine:latest' 
+		dockerfile { 
+			filename 'dockerfile_ex5_1'
+			dir '005 - Recording Test Results and Artifacts'
 		}
 	}
     stages {
         stage('build') {
             steps {
-                sh "curl www.google.com"
+                sh "curl www.google.com" > file.html
+		archiveArtifacts artifacts: 'file.html'
             }
         }
     }
