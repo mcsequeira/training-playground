@@ -7,6 +7,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
+	    	emailext body: 'Test Message',
+    			subject: 'Test Subject',
+   			to: 'test@example.com'
+	    
                 sh ""
             }
         }
